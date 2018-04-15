@@ -14,7 +14,7 @@
                             <h3 class="mb-0">Login</h3>
                         </div>
                         <div class="card-body">
-                            <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
+                            <form class="form" role="form" autocomplete="off" novalidate="" method="POST">
                                 <div class="form-group">
                                     <label asp-for="Email"></label>
                                     <input asp-for="Email" class="form-control form-control-lg rounded-0" required="">
@@ -32,8 +32,13 @@
                                     <label asp-for="RememberMe" class="form-check-label small text-dark"></label>
                                 </div>
 
-
                                 <button type="submit" class="btn btn-success btn-lg float-right">Login</button>
+
+                                <div class="form-group">
+                                    <p>
+                                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                    </p>
+                                </div>
                             </form>
                         </div>
                     </div>

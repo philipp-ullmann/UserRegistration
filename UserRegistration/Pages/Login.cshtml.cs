@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using UserRegistration.Models;
-using System.Linq;
 
 namespace UserRegistration.Pages
 {
@@ -51,8 +50,6 @@ namespace UserRegistration.Pages
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
             ReturnUrl = returnUrl;
         }
 
@@ -70,10 +67,7 @@ namespace UserRegistration.Pages
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = RememberMe });
-                }
+                
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
